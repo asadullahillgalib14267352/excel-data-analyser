@@ -1,0 +1,48 @@
+
+<div class="card-wrapper">
+  <mat-card class="example-card" style="background-color: white; margin-top: 10px;">
+
+
+    <div class="ui-g">
+      <div class="ui-g-12 ui-fluid" style="margin-left: 20px">
+        <mat-card-title style="color: black">Data Ingestion</mat-card-title>
+        <div class="ui-g-12">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-4">
+            <span>
+                <input type="file" class="file-input" style="background: black; width: 95%;"
+                       [accept]="requiredFileType"
+                       (change)="onFileSelected($event)" #fileUpload>
+            </span>
+              <div class="progress">
+                <mat-progress-bar class="progress-bar" mode="determinate"
+                                  [value]="uploadProgress" *ngIf="uploadProgress">
+
+                </mat-progress-bar>
+
+                <mat-icon class="cancel-upload" (click)="cancelUpload()"
+                          *ngIf="uploadProgress">delete_forever
+                </mat-icon>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="ui-g-12 ui-md-12">
+            <button mat-raised-button color="primary" style="margin-top: 10px; margin-bottom: 10px" (click)="uploadFile()">Upload</button>
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <!--    <excel-mapping-dialog [excelDialogDisplay]="excelDialogDisplay" [excelData] ="displayData" (onClose)="onExcelDialogClose()">-->
+
+    <!--    </excel-mapping-dialog>-->
+  </mat-card>
+
+</div>
