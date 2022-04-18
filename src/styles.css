@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+
+
+.excel-toolbar-button-group {
+  float: right;
+  padding-right: 5px;
+  margin-top: 0px;
+}
+.excel-toolbar {
+  z-index: 990;
+  background: #1e94d2;
+  width: 100%;
+  padding: 5px;
+  left: 0px;
+  border-bottom: 1px solid #cccccc;
+  height: 50px;
+  margin-top: -10px;
+}
+.excel-toolbar-header {
+  font-size: 26px;
+  float: left;
+  color: white;
+  font-weight: bold;
+  margin-top: 7px;
+  padding-left: 10px;
+}

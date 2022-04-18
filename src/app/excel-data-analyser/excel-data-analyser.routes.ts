@@ -3,13 +3,17 @@ import {DataIngestionComponent} from "./data-ingestion/data-ingestion.component"
 import {DataMappingComponent} from "./data-mapping/data-mapping.component";
 import {DataAnalysisComponent} from "./data-analysis/data-analysis.component";
 
-export const routes: Routes = [{
-  path: '', component: DataIngestionComponent, children: [
+export const routes: Routes = [
+
     {
-      path: '/dataMapping', component: DataMappingComponent
+      path: '', component: DataIngestionComponent
+    },
+
+    {
+      path: 'dataMapping', component: DataMappingComponent
     },
     {
-      path: '/dataAnalysis', component: DataAnalysisComponent
+      path: 'dataAnalysis', component: DataAnalysisComponent
     }
-  ]
-}];
+
+];

@@ -33,6 +33,17 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {InputTextModule} from "primeng/inputtext";
+import {MatSelectModule} from "@angular/material/select";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {RippleModule} from "primeng/ripple";
+import {MultiSelectModule} from "primeng/multiselect";
+import {SliderModule} from "primeng/slider";
+import {ProgressBarModule} from "primeng/progressbar";
+import {CalendarModule} from "primeng/calendar";
+import {CardModule} from "primeng/card";
+import {TabMenuModule} from "primeng/tabmenu";
 
 
 @NgModule({
@@ -63,7 +74,18 @@ import {InputTextModule} from "primeng/inputtext";
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    InputTextModule
+    InputTextModule,
+    MatSelectModule,
+    NgbModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    RippleModule,
+    MultiSelectModule,
+    SliderModule,
+    ProgressBarModule,
+    CalendarModule,
+    CardModule,
+    TabMenuModule
 
   ],
   declarations: [

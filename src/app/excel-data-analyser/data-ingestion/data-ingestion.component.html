@@ -1,108 +1,63 @@
 
-<div class="flex-container">
-<mat-toolbar color="primary" xmlns="http://www.w3.org/1999/html">
-  <span><h2>Excel Data Analyser</h2></span>
-<div class="button-ts">
-<!--  <mat-button>Data Mapping</mat-button>-->
-<!--&lt;!&ndash;    <a> | </a>&ndash;&gt;-->
-<!--  <mat-button>Data Analysis</mat-button>-->
-  <button mat-raised-button color="accent"  (click)="navigateToDataMapping()">Data Mapping</button>
-  <button mat-raised-button color="accent" style="margin-left: 5px" (click)="navigateToDataAnalysis()">Data Analysis</button>
-
-</div>
-</mat-toolbar>
-
-
-</div>
-<div>
-  <file-upload [fileUploadData]="fileData"></file-upload>
-</div>
-<!--<div class="card-wrapper">-->
-<!--<mat-card class="example-card" style="background-color: white; margin-top: 10px;">-->
-<!--  <div class="ui-g">-->
-<!--    <div class="ui-g-12 ui-fluid" style="margin-left: 20px">-->
-<!--      <mat-card-title style="color: black">Data Ingestion</mat-card-title>-->
-<!--      <div class="ui-g-12">-->
-<!--        <div class="ui-g-12 ui-md-12">-->
-<!--    <button pButton type="button" label="Upload" icon="ui-icon-plus" class="default-btn" ></button>-->
-
-<!--  </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</mat-card>-->
-<!--</div>-->
-
-
-
-
-
-  <div class="card-wrapper">
-    <mat-card class="example-card" style="background-color: white; margin-top: 10px; height: max-content">
-      <div class="ui-g">
-        <div class="ui-g-12 ui-fluid" style="margin-left: 20px">
-          <div class="ui-g-12">
-            <mat-form-field appearance="fill" style="margin-left: 80%; background-color: azure">
-
-                    <span class="md-inputfield">
-                        <input matInput placeholder="Ex. Pizza">
-
-                    </span>
-
-            </mat-form-field>
-            <div class="mat-elevation-z8" style="margin-top: 10px;margin-left: 10px; width: 95%; background: #f3edff">
-
-              <table mat-table [dataSource]="dataSource" >
-                <!-- Position Column -->
-                <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef> Date </th>
-                  <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="fileName">
-                  <th mat-header-cell *matHeaderCellDef> File Name </th>
-                  <td mat-cell *matCellDef="let element"> {{element.fileName}} </td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="status">
-                  <th mat-header-cell *matHeaderCellDef> Status </th>
-                  <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                </ng-container>
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="schedule">
-                  <th mat-header-cell *matHeaderCellDef> Schedule </th>
-                  <td mat-cell *matCellDef="let element">
-
-                    <input matInput [matDatepicker]="y" [value]="element.schedule" name="empto" placeholder="Choose a date" >
-                    <mat-datepicker-toggle matSuffix [for]="y"></mat-datepicker-toggle>
-                    <mat-datepicker #y></mat-datepicker>
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="action">
-                  <th mat-header-cell *matHeaderCellDef> action </th>
-                  <td mat-cell *matCellDef="let element"> {{element.action}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-              <div class="ui-g-12 ui-md-4" style="margin-bottom: 10px">
-              <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                             showFirstLastButtons
-                             aria-label="Select page of periodic elements" >
-              </mat-paginator>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="ui-g">
+    <div class="excel-toolbar">
+      <span class="excel-toolbar-header" icon="pi pi-book"  iconPos="right"> Excel Data Analyser</span>
+      <div class="excel-toolbar-button-group">
+        <button pButton pRipple type="button" label="Data Mapping"  icon="pi pi-map"  iconPos="right" class="p-button-warning" (click)="navigateToDataMapping()"></button>
+        <button pButton pRipple type="button" label="Data analysis"  style="margin-left: 5px" icon="pi pi-spinner" iconPos="right" class="p-button-warning" (click)="navigateToDataAnalysis()"></button>
       </div>
-    </mat-card>
-
+    </div>
+  </div>
+  <div class="card" >
+    <p-card header="Data Ingestion">
+        <file-upload [fileUploadData]="fileData"></file-upload>
+    </p-card>
   </div>
 
 
+
+
+
+  <div class="card" >
+    <p-card header="List">
+    <p-table style="width: 90%" [value]="fileData" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>File Name</th>
+          <th>Status</th>
+          <th>Schedule</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-file>
+        <tr>
+          <td>{{file.date}}</td>
+          <td>{{file.fileName}}</td>
+          <td>{{file.status}}</td>
+<!--          <td>{{file.schedule}}</td>-->
+
+          <td  [pEditableColumn]="file" [pEditableColumnField]="'schedule'">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-calendar [(ngModel)]="file.schedule" [ngModelOptions]="{standalone: true}" [showIcon]="true" dateFormat="mm/dd/yy"  inputId="icon"></p-calendar>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{file.schedule}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td>{{file.action}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-table>
+    </p-card>
+  </div>
 

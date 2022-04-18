@@ -15,6 +15,8 @@ import {CommonModule} from "@angular/common";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SpreadsheetAllModule} from "@syncfusion/ej2-angular-spreadsheet";
 // import {DropDownButtonModule} from "@syncfusion/ej2-angular-splitbuttons";
+import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import {MenuItem} from 'primeng/api';
 import {RouterModule} from "@angular/router";
 import {MatToolbarModule} from "@angular/material/toolbar";
 
@@ -38,6 +40,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     // DropDownButtonModule,
     SpreadsheetAllModule,
     RouterModule,
+    AccordionModule,
 
     BrowserAnimationsModule,
   ],
